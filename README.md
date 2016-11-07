@@ -7,7 +7,7 @@ Content URLs
 /pop-quiz
 
 ```
-1) All requests should go through the Django REST Framework.
+* All requests should go through the Django REST Framework.
 **Complete**
 
 2) A Create (POST) end point should take the following fields and save them to the database: IP, Username, Comment, content URL.
