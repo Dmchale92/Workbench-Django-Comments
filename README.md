@@ -3,8 +3,11 @@
 Comment API using the Django REST Framework that allows users to submit comments associated with the below content URLs, or retrieve a list of comments associated with a content URL.
 
 Content URLs
+
 /low-altitude-launch
+
 /planetary-motion
+
 /pop-quiz
 
 **Setup** 
