@@ -6,7 +6,7 @@ Content URLs
 /planetary-motion
 /pop-quiz
 
-Function:
+
 	1) All requests should go through the Django REST Framework.
   Complete
 
@@ -16,7 +16,6 @@ Function:
 	3) A List (GET) end point would take a content URL and return a list of all previously submitted comments matching that content URL.
   Complete
 
-Throttling: 
 	4) Any IP Address adding more than 2 comments (POST) in 1 minute should have that request rejected and be locked out for 5 minutes.
 
 	5) Any Comment that is an exact duplicate of an existing comment posted within the last 24 hours should be rejected and the originating IP Address should be locked out for 1 minute. (POST)
@@ -24,7 +23,6 @@ Throttling:
 	6) The API should use a rate limiter to prevent the user from making more than 20 requests (POST and GET) per minute.
   Complete
 
-Storage:
 	7) Please use a sqlite database. 
   Complete
 
