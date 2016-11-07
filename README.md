@@ -6,8 +6,8 @@ Content URLs
 /planetary-motion
 /pop-quiz
 
-```
-* All requests should go through the Django REST Framework.
+
+1) All requests should go through the Django REST Framework.
 **Complete**
 
 2) A Create (POST) end point should take the following fields and save them to the database: IP, Username, Comment, content URL.
@@ -31,4 +31,4 @@ Content URLs
 
 9) IP Addresses can be manually submitted in a field with the POST and GET requests, since this is a dev environment and all IPs would be the same.
 **Complete**
-```
+
