@@ -51,22 +51,25 @@ class PostLimitMiddleware(MiddlewareMixin):
 		return None
 
 class DuplicateLimitMiddleware(MiddlewareMixin):
-# 	# Prevent users from creating duplicate posts on the same day (on a per-IP basis)
-# 	def process_request(self, request):
-# 		if request.method == "POST":
-# 			# First check to see that IP address is not locked out
-# 			# due to comment matching existing comment from past 24 hours.
-# 			ip_blocked_duplicate = 'IP_BLOCKED_AT_%s' % request.META.get('REMOTE_ADDR')
-# 			ip_strike_duplicate = cache.get(ip_blocked_duplicate) or 0
-# 			comment = request.POST['comment']
-# 			try:
-# 				comment_match = Comment.objects.filter(created__gte=datetime.date.today()).filter(comment__exact=comment)
-# 				if comment_match.count() > 0:
-# 					cache.set(ip_blocked_duplicate, ip_strike_duplicate + 1, 300)
-# 			except Exception as e:
-# 				print(e)
-# 			if ip_strike_duplicate >= 1:
-# 				raise Exception('Locked out for five minutes: Duplicate Comment detected.')
-# 		return None
-	pass
+	# Prevent users from creating duplicate posts on the same day (on a per-IP basis)
+	def process_request(self, request):
+		if request.method == "POST":
+			# First check to see that IP address is not locked out
+			# due to comment matching existing comment from past 24 hours.
+			ip_duplicate = 'DUPLICATE_IP_BLOCKED_AT_%s' % request.META.get('REMOTE_ADDR')
+			ip_strike = cache.get(ip_duplicate, 0)
+			print('ip strike = ' + str(ip_strike))
+			if ip_strike >= 1:
+				raise Exception('Locked out for five minutes: Duplicate Comment detected.')
+			comment = request.POST['comment']
+			try:
+				comment_match = Comment.objects.filter(created__gte=datetime.date.today()).filter(comment__exact=comment)
+				if comment_match.count() > 0:
+					cache.set(ip_duplicate, ip_strike + 1, 300)
+					raise Exception('Locked out for five minutes: Duplicate Comment detected.')
+				else:
+					pass
+			except Exception as e:
+				print(e)
+		return None
 
