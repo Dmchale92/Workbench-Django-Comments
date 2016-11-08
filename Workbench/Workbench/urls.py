@@ -8,6 +8,7 @@ from rest_framework import routers
 from Comments import views
 
 router = routers.DefaultRouter()
+# Register each view set to allow for viewing/editing by content URL
 router.register(r'low-altitude-launch', views.LowAltitudeViewSet)
 router.register(r'planetary-motion', views.PlanetaryMotionViewSet)
 router.register(r'pop-quiz', views.PopQuizViewSet)

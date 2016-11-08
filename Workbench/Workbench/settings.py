@@ -39,9 +39,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'Workbench.middleware.StackOverflowMiddleware',
-    # 'Workbench.middleware.PostLimitMiddleware',
-    # 'Workbench.middleware.DuplicateLimitMiddleware',
+    'Workbench.middleware.PostLimitMiddleware',
+    'Workbench.middleware.DuplicateLimitMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -105,9 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
+CACHES = {
+   'default': {
+      'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+      'LOCATION': 'cache_table',
+   }
+}
 
 LANGUAGE_CODE = 'en-us'
 
@@ -118,9 +124,5 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'

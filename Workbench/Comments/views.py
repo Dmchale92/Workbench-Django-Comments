@@ -24,6 +24,7 @@ class PlanetaryMotionViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.filter(content_url__contains='planetary-motion')
     serializer_class = CommentSerializer
 
+
 class LowAltitudeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Low Altitude Launch comments to be created, or viewed.

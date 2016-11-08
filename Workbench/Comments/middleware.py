@@ -1,6 +1,7 @@
 import requests
 from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
+from django import http
 
 class StackOverflowMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
@@ -72,3 +73,9 @@ class DuplicateLimitMiddleware(MiddlewareMixin):
 	#         cache.set(ip_blocked, ip_strike + 1, 300)
 	#         raise e
 	pass
+
+class BlockedIpMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        if request.META['REMOTE_ADDR'] in settings.BLOCKED_IPS:
+            return http.HttpResponseForbidden('<h1>Forbidden</h1>')
+        return None
