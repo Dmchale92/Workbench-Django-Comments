@@ -34,7 +34,11 @@ Comment API using the Django REST Framework that allows users to submit comments
 
 4) Any IP Address adding more than 2 comments (POST) in 1 minute should have that request rejected and be locked out for 5 minutes.
 
+**Complete**
+
 5) Any Comment that is an exact duplicate of an existing comment posted within the last 24 hours should be rejected and the originating IP Address should be locked out for 1 minute. (POST)
+
+**Complete** (Issue with SQLite3 caching & Django 1.10? Always sets ip_blocked_duplicate key to 1, causing overly zealous IP blocking.)
 
 6) The API should use a rate limiter to prevent the user from making more than 20 requests (POST and GET) per minute.
 
