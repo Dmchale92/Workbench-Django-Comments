@@ -62,7 +62,7 @@ class DuplicateLimitMiddleware(MiddlewareMixin):
 # 			try:
 # 				comment_match = Comment.objects.filter(created__gte=datetime.date.today()).filter(comment__exact=comment)
 # 				if comment_match.count() > 0:
-# 					cache.set(ip_blocked_duplicate, ip_strike_duplicate + 1, 10)
+# 					cache.set(ip_blocked_duplicate, ip_strike_duplicate + 1, 300)
 # 			except Exception as e:
 # 				print(e)
 # 			if ip_strike_duplicate >= 1:
